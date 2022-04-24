@@ -14,7 +14,7 @@ import React, { useState } from 'react'
 import InputComponent from "../components/InputCompenent"
 import { Button } from 'react-native-elements'
 
-const EditIntroScreen = ({navigation,  route, props}) => {
+const EditIntroScreen = ({navigation,  route}) => {
     const {nome, apelido, position, cidade, pais, sobre, interesse} = route.params;
     const [nomeInput, SetNome] = useState(nome)
     const [apelidoInput, SetApelido] = useState(apelido)

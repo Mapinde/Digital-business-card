@@ -32,32 +32,47 @@ const DATA = [
     },
   ];
 
-  const Item = ({ position,campany, periodo, date, local, description }) => (
-    <View style={styles.info}>
-    <Image style={{width:60, 
-        height:60, 
-        resizeMode:"cover" }} 
-        source={{uri: "https://caprecruiter-production-static.s3.amazonaws.com/static/img/account_no_logo.png"}} />
-    <View style={{paddingLeft: 10, flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",}}>
-      <Text style={styles.position}>{position}</Text>  
-      <TouchableOpacity activeOpacity={0.5} onPress={()=>{
-                        navigation.navigate("EditExperience")
-                    }}>
-        <SimpleLineIcons name="pencil" size={24} color="black"  />
-      </TouchableOpacity>
-    </View>
-    <Text style={styles.campanyName}>{campany} * {periodo}</Text>   
-    <Text style={styles.period}>{date}</Text> 
-    <Text style={styles.local}>{local}</Text> 
-    <Text style={styles.description}>{description}</Text> 
-
-
-</View>
-  );
+  
 
 const PreEditExperience = ({navigation, route}) => {
+    const Item = ({ position,campany, periodo, date, local, description }) => (
+        <View >
+            <View style={styles.info}>
+                <Image style={{width:60, 
+                    height:60, 
+                    resizeMode:"cover" }} 
+                    source={{uri: "https://caprecruiter-production-static.s3.amazonaws.com/static/img/account_no_logo.png"}} />
+                <View style={{flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "space-between",}}>
+                    <Text style={styles.position}>{position}</Text>  
+                    <TouchableOpacity activeOpacity={0.5} onPress={()=>{
+                        navigation.navigate("EditExperience", {
+                            position: position,
+                            campany: campany,
+                            periodo: periodo,
+                            date: date,
+                            local: local,
+                            description: description,
+                        })
+                        }}
+                    >
+                    <SimpleLineIcons name="pencil" size={24} color="black" style={{paddingRight: 20}}  />
+                </TouchableOpacity>
+                </View>
+                <View style={{}}>
+                    <Text style={styles.campanyName}>{campany} * {periodo}</Text>   
+                    <Text style={styles.period}>{date}</Text> 
+                    <Text style={styles.local}>{local}</Text> 
+                    <Text style={styles.description}>{description}</Text> 
+                </View>
+                
+            </View>
+            
+                
+            
+        </View>
+      );
     const renderItem = ({ item }) => (
         <Item position={item.position}
             campany={item.campany}
@@ -83,16 +98,16 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         marginTop: StatusBar.currentHeight || 0,
-      },
-      info:{
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-        borderBottomColor: '#e2e3e3',
-        borderBottomWidth: 1,
         backgroundColor: "#fff",
         padding: 10,
-        
+      },
+      info:{
+        flexDirection: "column",
+        justifyContent: "flex-start",
+        borderBottomColor: '#e2e3e3',
+        borderBottomWidth: 1,
+        paddingBottom: 10,
+        paddingTop: 10,
     },
     position:{
         fontSize: 16,

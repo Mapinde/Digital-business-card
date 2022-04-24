@@ -128,7 +128,7 @@ const HomeScreen = ({navigation, route, props}) => {
                         <AntDesign name="plus"  size={24} color="black" style={{paddingRight: 30}}/>
                     </TouchableOpacity>
                     <TouchableOpacity activeOpacity={0.5} onPress={()=>{
-                        navigation.navigate("EditExperience")
+                        navigation.navigate("PreEditExperience")
                     }}>
                         <SimpleLineIcons name="pencil" size={24} color="black"  />
                     </TouchableOpacity>
