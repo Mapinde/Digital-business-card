@@ -4,6 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './screens/HomeScreen';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import EditIntroScreen from './screens/EditIntroScreen';
+import PreEditExperience from './screens/PreEditExperience';
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -12,6 +14,8 @@ export default function App() {
       <NavigationContainer style={styles.container}>
         <Stack.Navigator>
             <Stack.Screen name="Home" component={HomeScreen} options={{headerShown: false}} />
+            <Stack.Screen name="EditMain" component={EditIntroScreen} options={{headerShown: true, title:"Edit Main"}} />
+            <Stack.Screen name="EditExperience" component={PreEditExperience} options={{headerShown: true, title:"Edit Experience"}} />
         </Stack.Navigator>
         <StatusBar style="auto" />
       </NavigationContainer>

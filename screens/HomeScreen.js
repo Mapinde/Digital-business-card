@@ -3,10 +3,24 @@ import React from 'react'
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { AntDesign, Ionicons, SimpleLineIcons, FontAwesome } from '@expo/vector-icons';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const image = require('../assets/michael.jpg') ;
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation, route, props}) => {
+    
+    const [nomeInput, SetNome] = useState("")
+    const [apelidoInput, SetApelido] = useState("")
+    const [positionInput, SetPosition] = useState("")
+    const [cidadeInput, SetCidade] = useState("")
+    const [paisInput, SetPais] = useState("")
+    const [sobreInput, SetSobre] = useState("")
+    const [interesseInput, SetInteresse] = useState("")
+    useEffect(()=>{
+        SetNome("Nome")
+        SetApelido("Apelido")
+    }, [route])
   return (
     <SafeAreaView style={styles.container}>
     <ScrollView>
@@ -14,9 +28,22 @@ const HomeScreen = () => {
             <Image source={image} resizeMode="cover" style={styles.image}/>     
         </View>
         <View style={styles.containerDetails}>
+            <View style={{alignItems: "center", flexDirection: "row", justifyContent: "space-between", padding: 10}}>
+                <Text style={{fontSize: 40, fontWeight: "bold", color: "#fff"}}>{nomeInput} {''} {apelidoInput}</Text>
+                <TouchableOpacity activeOpacity={0.2} style={{paddingRight: 30}} onPress={()=> navigation.navigate("EditMain",{
+                    nome: nomeInput,
+                    apelido: apelidoInput,
+                    position: "BackEnd Developer",
+                    cidade: "Maputo",
+                    pais: "Moçambique",
+                    sobre: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum",
+                    interesse: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum"
+                     })}>
+                        <SimpleLineIcons name="pencil" size={24} color="white"  />
+                </TouchableOpacity>
+            </View>
             <View style={{alignItems: "center", justifyContent: "space-around", padding: 10}}>
-                <Text style={{fontSize: 40, fontWeight: "bold", color: "#fff"}}>Onélio Mapinde</Text>
-                <Text style={{fontSize: 20, fontWeight: "600", color: "#EC8014"}}>BackEnd Developer</Text>
+            <Text style={{fontSize: 20, fontWeight: "600", color: "#EC8014"}}>BackEnd Developer</Text>
                 <Text style={{fontSize: 16, fontWeight: "600", color: "#fff", paddingTop: 10}}>Maputo, Moçambique</Text>
             </View>
             <View style={{flexDirection: "row", alignItems: "center", justifyContent: "center"}}>
@@ -89,27 +116,30 @@ const HomeScreen = () => {
                        as their default model text, and a search for 'lorem ipsum' will uncover
                 </Text>
             </View>   
-           
         </View>
-        <View style={styles.containerExperience}>
-            <View style={styles.headerContainer}>
-                <Text style={styles.headerTitle}>Experiencia</Text>
-            </View> 
-            <View style={styles.headerContainer}>
-                <TouchableOpacity activeOpacity={0.5}>
-                    <AntDesign name="plus"  size={24} color="black" style={{paddingRight: 30}}/>
-                </TouchableOpacity>
-                <TouchableOpacity activeOpacity={0.5}>
-                    <SimpleLineIcons name="pencil" size={24} color="black"  />
-                </TouchableOpacity>
-            </View> 
-        </View> 
-        <View style={styles.info}>
+
+        <View style={{flex: 1}}>
+            <View style={styles.containerHeaderExperience}>
+                <View style={styles.headerContainer}>
+                    <Text style={styles.headerTitle}>Experiencia</Text>
+                </View> 
+                <View style={styles.headerIcon}>
+                    <TouchableOpacity activeOpacity={0.2}>
+                        <AntDesign name="plus"  size={24} color="black" style={{paddingRight: 30}}/>
+                    </TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.5} onPress={()=>{
+                        navigation.navigate("EditExperience")
+                    }}>
+                        <SimpleLineIcons name="pencil" size={24} color="black"  />
+                    </TouchableOpacity>
+                </View> 
+            </View>
+            <View style={styles.info}>
             <Image style={{width:60, 
                 height:60, 
                 resizeMode:"cover" }} 
                 source={{uri: "https://caprecruiter-production-static.s3.amazonaws.com/static/img/account_no_logo.png"}} />
-        <View style={{paddingLeft: 10}}>
+        <View style={{paddingLeft: 10, paddingRight: 10}}>
             <Text style={styles.position}>RPG Developer</Text>  
             <Text style={styles.campanyName}>Moza Banco * Tempo Inteiro</Text>   
             <Text style={styles.period}>Jun 2018 - Abril 2022 * 3 Yrs 11 mos</Text> 
@@ -148,21 +178,23 @@ const HomeScreen = () => {
                     sometimes by accident, sometimes on purpose (injected humour and the like).</Text> 
                 </View>
             
-            </View>
-        
-        <View style={styles.containerExperience}>
-            <View style={styles.headerContainer}>
-                <Text style={styles.headerTitle}>Educação</Text>
             </View> 
-            <View style={styles.headerContainer}>
-                <TouchableOpacity activeOpacity={0.5}>
-                    <AntDesign name="plus"  size={24} color="black" style={{paddingRight: 30}}/>
-                </TouchableOpacity>
-                <TouchableOpacity activeOpacity={0.5}>
-                    <SimpleLineIcons name="pencil" size={24} color="black"  />
-                </TouchableOpacity>
-            </View> 
-        </View>
+
+        </View>    
+        <View style={{flex: 1}}>
+            <View style={styles.containerHeaderExperience}>
+                <View style={styles.headerContainer}>
+                    <Text style={styles.headerTitle}>Educação</Text>
+                </View> 
+                <View style={styles.headerIcon}>
+                    <TouchableOpacity activeOpacity={0.5}>
+                        <AntDesign name="plus"  size={24} color="black" style={{paddingRight: 30}}/>
+                    </TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.5}>
+                        <SimpleLineIcons name="pencil" size={24} color="black"  />
+                    </TouchableOpacity>
+                </View> 
+            </View>  
         <View style={styles.info}>
             <Image style={{width:60, 
                 height:60, 
@@ -175,22 +207,25 @@ const HomeScreen = () => {
             </View>
             
         </View>
-        <View style={styles.info}>
-            <Image style={{width:60, 
-                height:60, 
-                resizeMode:"cover" }} 
-                source={{uri: "https://pimnetwork.org/wp-content/uploads/2019/07/school_placeholder.jpg"}} />
-            <View style={{paddingLeft: 10}}>
-                <Text style={styles.position}>ITC</Text>  
-                <Text style={styles.campanyName}>Medio * Sistemas Informaticos</Text>   
-                <Text style={styles.period}>2007 - 2010</Text> 
+            <View style={styles.info}>
+                <Image style={{width:60, 
+                    height:60, 
+                    resizeMode:"cover" }} 
+                    source={{uri: "https://pimnetwork.org/wp-content/uploads/2019/07/school_placeholder.jpg"}} />
+                <View style={{paddingLeft: 10}}>
+                    <Text style={styles.position}>ITC</Text>  
+                    <Text style={styles.campanyName}>Medio * Sistemas Informaticos</Text>   
+                    <Text style={styles.period}>2007 - 2010</Text> 
+                </View>
             </View>
         </View>
-        <View style={styles.containerExperience}>
+        
+        
+        <View style={styles.containerHeaderExperience}>
               <View style={styles.headerContainer}>
                     <Text style={styles.headerTitle}>Certifições</Text>
               </View> 
-              <View style={styles.headerContainer}>
+              <View style={styles.headerIcon}>
                     <TouchableOpacity activeOpacity={0.5}>
                         <AntDesign name="plus"  size={24} color="black" style={{paddingRight: 30}}/>
                     </TouchableOpacity>
@@ -260,15 +295,13 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
     },
     containerDetails:{
-        
         width: "100%",
-        
         backgroundColor: "#090B32",
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
         overflow: "hidden",
     },
-    containerExperience:{
+    containerHeaderExperience:{
         width: "100%",
         marginTop: 10,
         backgroundColor: "#fff",
@@ -277,6 +310,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "space-between"
     },
+    
     containerFooter:{
      
         width: "100%",
@@ -299,16 +333,19 @@ const styles = StyleSheet.create({
         color: "black"
     },
     headerContainer:{
-        flexDirection: "row",
          alignItems: "center",
-         justifyContent: "space-between",
-         paddingRight: 20,
-         paddingLeft: 10,
+         padding: 10,
+    },
+    headerIcon:{
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        paddingRight: 20,
     },
     info:{
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-between",
+        justifyContent: "flex-start",
         borderBottomColor: '#e2e3e3',
         borderBottomWidth: 1,
         backgroundColor: "#fff",
