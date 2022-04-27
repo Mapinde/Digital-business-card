@@ -23,11 +23,14 @@ const EditIntroScreen = ({navigation,  route}) => {
     const [paisInput, SetPais] = useState(pais)
     const [sobreInput, SetSobre] = useState(sobre)
     const [interesseInput, SetInteresse] = useState(interesse)
+    const [email, SetEmail] = useState("")
+    const [telefone1, SetTelefone1] = useState("")
+    const [telefone2, SetTelefone2] = useState("")
   return (
       <>
     <SafeAreaView style={{flex:1, backgroundColor: "white"}}>
         <KeyboardAvoidingView 
-            behavior={Platform.OS === "ios" ? "padding" : ""}
+            behavior={Platform.OS === "ios" ? "padding" : undefined}
             style={styles.container}
             keyboardVerticalOffset={90}
         >
@@ -64,18 +67,43 @@ const EditIntroScreen = ({navigation,  route}) => {
                 type={"text"}
             />
             <InputComponent placeholder={"Sobre"} 
-            label="Sobre"
-            value={sobreInput}
-            setFunction={SetSobre}
-            type={"text"}
+                label="Sobre"
+                value={sobreInput}
+                multiline={true}
+                numberOfLines={6}
+                setFunction={SetSobre}
+                type={"text"}
             />
             <InputComponent placeholder={"Interesse"} 
                 label={"Interesse"}
                 value={interesse}
                 setFunction={SetInteresse}
                 type={"text"}
+                multiline={true}
+                numberOfLines={6}
 
-                 />
+            />
+            <InputComponent placeholder={"onelio.mapinde@gmail.com"} 
+                label={"Email"}
+                value={email}
+                setFunction={SetEmail}
+                type={"email"}
+
+            />
+            <InputComponent placeholder={"+258824215357"} 
+                label={"Telefone 1"}
+                value={telefone1}
+                setFunction={SetTelefone1}
+                type={"text"}
+
+            />
+            <InputComponent placeholder={"+258874215357"} 
+                label={"Telefone 2"}
+                value={telefone2}
+                setFunction={SetTelefone2}
+                type={"text"}
+
+            />
         <View style={{ width: "100%", alignItems: "center", height: 100, backgroundColor: "white",}}>
             <Button onPress={()=> {
                 Keyboard.dismiss;

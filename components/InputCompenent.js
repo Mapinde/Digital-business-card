@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { Input } from 'react-native-elements'
 
-const InputCompenent = ({placeholder, value, autoFocus, type, iconType, iconName, setFunction, security, label, style}) => {
+const InputCompenent = ({placeholder, value, autoFocus, type, iconType, iconName, setFunction, security, label, style, numberOfLines, multiline}) => {
     
   return (
     <View style={styles.container}>
@@ -14,6 +14,8 @@ const InputCompenent = ({placeholder, value, autoFocus, type, iconType, iconName
             leftIcon={{type: iconType, name: iconName }}
             value={value}
             label={label}
+            numberOfLines = {numberOfLines}
+            multiline={multiline}
             labelStyle={{fontWeight: "normal", fontSize: 14}}
             onChangeText={(text)=> setFunction(text)}
         />

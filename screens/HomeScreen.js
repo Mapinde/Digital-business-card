@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, TouchableOpacity , Image, ScrollView, SafeAreaView, StatusBar   } from 'react-native'
 import React from 'react'
-import { Button } from 'react-native-elements';
+import { Button, BottomSheet } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { AntDesign, Ionicons, SimpleLineIcons, FontAwesome } from '@expo/vector-icons';
 import { useState } from 'react';
@@ -17,9 +17,13 @@ const HomeScreen = ({navigation, route, props}) => {
     const [paisInput, SetPais] = useState("")
     const [sobreInput, SetSobre] = useState("")
     const [interesseInput, SetInteresse] = useState("")
+
+    const [ isPress, setIsPress ] = useState(false);
+    const [currentColor, setCurrentColor] = useState("white");
+
     useEffect(()=>{
-        SetNome("Nome")
-        SetApelido("Apelido")
+        SetNome("Onélio")
+        SetApelido("Mapinde")
     }, [route])
   return (
     <SafeAreaView style={styles.container}>
@@ -27,7 +31,7 @@ const HomeScreen = ({navigation, route, props}) => {
         <View style={styles.imageContainer}>
             <Image source={image} resizeMode="cover" style={styles.image}/>     
         </View>
-        <View style={styles.containerDetails}>
+        <View style={[styles.containerDetails]}>
             <View style={{alignItems: "center", flexDirection: "row", justifyContent: "space-between", padding: 10}}>
                 <Text style={{fontSize: 40, fontWeight: "bold", color: "#fff"}}>{nomeInput} {''} {apelidoInput}</Text>
                 <TouchableOpacity activeOpacity={0.2} style={{paddingRight: 30}} onPress={()=> navigation.navigate("EditMain",{
@@ -46,25 +50,25 @@ const HomeScreen = ({navigation, route, props}) => {
             <Text style={{fontSize: 20, fontWeight: "600", color: "#EC8014"}}>BackEnd Developer</Text>
                 <Text style={{fontSize: 16, fontWeight: "600", color: "#fff", paddingTop: 10}}>Maputo, Moçambique</Text>
             </View>
-            <View style={{flexDirection: "row", alignItems: "center", justifyContent: "center"}}>
-            <Button
-              title="Email"
+            <View style={{flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
+            <Button onPress={()=>{ 
+                if (currentColor === "white"){
+                     setCurrentColor("#099B52")
+                    }else{
+                        setCurrentColor("white")
+                    } }}
+              title="Recruta me"
               icon={{
-                name: 'email',
+                name: 'work',
                 type: 'Entypo',
                 size: 15,
                 color: 'black',
               }}
-              iconContainerStyle={{ marginRight: 10 }}
+              iconContainerStyle={{ marginRight: 5 }}
               titleStyle={{ fontWeight: '700', color: "black" }}
-              buttonStyle={{
-                backgroundColor: 'white',
-                borderColor: 'transparent',
-                marginLeft: 50,
-                width: 100,
-              }}
+              buttonStyle={[styles.recrutButton,{ backgroundColor: currentColor}]}
               containerStyle={{
-                width: 150,
+                width: 200,
                 marginHorizontal: 0,
                 marginVertical: 10,
               }}
@@ -82,12 +86,12 @@ const HomeScreen = ({navigation, route, props}) => {
               buttonStyle={{
                 backgroundColor: 'rgba(90, 154, 230, 1)',
                 borderColor: 'transparent',
-                marginLeft: 20,
+                marginLeft: 0,
                 width: 100,
                
               }}
               containerStyle={{
-                width: 150,
+                width: 120,
                 marginHorizontal: 0,
                 marginVertical: 10,
               }}
@@ -95,8 +99,8 @@ const HomeScreen = ({navigation, route, props}) => {
              <Icon  name="qrcode" size={30} color="#D2CAC3" style={{width: 50}}/>
             </View>
             <View style={{padding: 10}}>
-                <Text style={{fontSize: 25, fontWeight: "bold", color: "#fff"}}>About</Text>
-                <Text style={{fontSize: 14, fontWeight: "600", color: "#EBE7E3", marginBottom: 10}}>
+                <Text style={{fontSize: 25, fontWeight: "bold", color: "#fff"}}>Sobre</Text>
+                <Text style={styles.introDescription}>
                     It is a long established fact that a reader will be distracted by the readable
                      content of a page when looking at its layout. The point of using Lorem Ipsum
                       is that it has a more-or-less normal distribution of letters, as opposed to 
@@ -106,8 +110,8 @@ const HomeScreen = ({navigation, route, props}) => {
                 </Text>
             </View>
             <View style={{padding: 10}}>
-                <Text style={{fontSize: 25, fontWeight: "bold", color: "#fff"}}>Interests</Text>
-                <Text style={{fontSize: 14, fontWeight: "600", color: "#EBE7E3"}}>
+                <Text style={{fontSize: 25, fontWeight: "bold", color: "#fff"}}>Interesse</Text>
+                <Text style={styles.introDescription}>
                     It is a long established fact that a reader will be distracted by the readable
                      content of a page when looking at its layout. The point of using Lorem Ipsum
                       is that it has a more-or-less normal distribution of letters, as opposed to 
@@ -310,7 +314,12 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "space-between"
     },
-    
+    recrutButton:{    
+        borderColor: 'transparent',
+        marginLeft: 50,
+        width: 130,
+          
+    },
     containerFooter:{
      
         width: "100%",
@@ -321,6 +330,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         
     },
+    introDescription:{fontSize: 14, fontWeight: "600", color: "#EBE7E3"},
     image:{
         ...StyleSheet.absoluteFillObject,
         height: 300,
@@ -372,6 +382,7 @@ const styles = StyleSheet.create({
     },
     description:{
         paddingTop: 5,
+        paddingRight: 5,
         fontSize: 14,
         fontWeight: "600",
     }
