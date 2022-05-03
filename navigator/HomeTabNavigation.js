@@ -11,14 +11,15 @@ import JobScreen from '../screens/JobScreen';
 const HomeTabNavigation = () => {
     const Tab = createBottomTabNavigator();
   return (
-    <Tab.Navigator screenOptions={({ route }) => ({
+    <Tab.Navigator 
+     screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
 
           if (route.name === 'Profile') {
             iconName = focused
-              ? 'person'
-              : 'person-outline';
+              ? 'home'
+              : 'home-filled';
           } else if (route.name === 'Contactos') {
             iconName = focused ? 'people' : 'people-outline';
           }else if (route.name === 'Jobs'){

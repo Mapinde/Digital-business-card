@@ -16,7 +16,7 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <NavigationContainer style={styles.container}>
-        <Stack.Navigator>
+        <Stack.Navigator initialRouteName='Login'>
             <Stack.Screen name="HomeTab" component={HomeTabNavigation} options={{headerShown: false}} />  
             <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}} />
             <Stack.Screen name="SignUp" component={SignUpScreen} options={{headerShown: true}} />
